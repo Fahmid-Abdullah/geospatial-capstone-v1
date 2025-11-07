@@ -7,17 +7,17 @@ export async function getPointsLayers() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: `
-            query GetPointsLayers {
+          query GetPointsLayers {
             getPointsLayers {
-                layer
-                points {
+              layer
+              points {
                 id
-                name
                 layer
+                properties
                 geom
-                }
+              }
             }
-            }
+          }
         `
       })
     });

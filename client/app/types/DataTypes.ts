@@ -1,9 +1,9 @@
 export type Point = {
     id: number;
-    name: string;
     layer: string;
+    properties : Record<string, any>,
     geom: {
-        type: string,
+        type: "Point" | "MultiPoint",
         coordinates: [number, number]
     }
     isVisible?: boolean
