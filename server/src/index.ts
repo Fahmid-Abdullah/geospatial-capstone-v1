@@ -1,18 +1,21 @@
 import dotenv from "dotenv";
-dotenv.config();
+dotenv.config({ path: "../.env" });
 
 import express from "express";
 import { ApolloServer } from "apollo-server-express";
-import { typeDefs } from "../graphql/schema";
-import { resolvers } from "../graphql/resolvers";
+import graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
+import { typeDefs } from "../graphql/schema.js";
+import { resolvers } from "../graphql/resolvers.js";
 
 const app = express();
 const PORT = Number(process.env.PORT) || 4000;
 
+app.use(graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }));
+
 async function startServer() {
     const server = new ApolloServer({
         typeDefs,
-        resolvers
+        resolvers,
     });
 
     await server.start();

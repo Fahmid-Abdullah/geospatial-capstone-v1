@@ -1,13 +1,13 @@
 import { gql } from "apollo-server-express";
-import GraphQLJSON from 'graphql-type-json';
 
 export const typeDefs = gql`
+    scalar Upload
     scalar JSON
 
     type Point {
         id: ID!
-        name: String!
         layer: String!
+        properties: JSON
         geom: JSON!
     }
 
@@ -24,5 +24,6 @@ export const typeDefs = gql`
 
     type Mutation {
         initializeDB: String
+        insertGeoJSON(file: Upload!): String
     }
 `;
